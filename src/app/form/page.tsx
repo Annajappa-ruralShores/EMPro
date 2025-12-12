@@ -92,14 +92,14 @@ export default function OrganizationForm() {
                                 <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Organization Name</label>
                                 <div className="relative">
                                     <Building2 className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
-                                    <input required name="orgName" value={formData.orgName} onChange={handleChange} type="text" placeholder="Acme Corp" className="flex h-10 w-full rounded-md border border-gray-200 dark:border-gray-700 bg-transparent px-3 py-2 pl-10 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:bg-gray-800 dark:text-white" />
+                                    <input required name="orgName" value={formData.orgName} onChange={handleChange} type="text" placeholder="Acme Corp" className="flex h-10 w-full rounded-md border border-gray-200 dark:border-gray-700 bg-transparent px-3 py-2 pl-10 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent dark:bg-gray-800 dark:text-white" />
                                 </div>
                             </div>
 
                             {/* Organization Type */}
                             <div className="space-y-2">
                                 <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Organization Type</label>
-                                <select required name="orgType" value={formData.orgType} onChange={handleChange} className="flex h-10 w-full rounded-md border border-gray-200 dark:border-gray-700 bg-transparent px-3 py-2 text-sm text-gray-900 dark:text-gray-100 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:bg-gray-800">
+                                <select required name="orgType" value={formData.orgType} onChange={handleChange} className="flex h-10 w-full rounded-md border border-gray-200 dark:border-gray-700 bg-transparent px-3 py-2 text-sm text-gray-900 dark:text-gray-100 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent dark:bg-gray-800">
                                     <option value="">Select Type</option>
                                     <option value="private">Private Limited</option>
                                     <option value="public">Public Limited</option>
@@ -113,7 +113,7 @@ export default function OrganizationForm() {
                                 <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Registration Number</label>
                                 <div className="relative">
                                     <FileText className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
-                                    <input required name="regNumber" value={formData.regNumber} onChange={handleChange} type="text" placeholder="REG-1234-5678" className="flex h-10 w-full rounded-md border border-gray-200 dark:border-gray-700 bg-transparent px-3 py-2 pl-10 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:bg-gray-800 dark:text-white" />
+                                    <input required name="regNumber" value={formData.regNumber} onChange={handleChange} type="text" placeholder="REG-1234-5678" className="flex h-10 w-full rounded-md border border-gray-200 dark:border-gray-700 bg-transparent px-3 py-2 pl-10 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent dark:bg-gray-800 dark:text-white" />
                                 </div>
                             </div>
 
@@ -122,14 +122,14 @@ export default function OrganizationForm() {
                                 <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Founded Date</label>
                                 <div className="relative">
                                     <Calendar className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
-                                    <input required name="foundedDate" value={formData.foundedDate} onChange={handleChange} type="date" className="flex h-10 w-full rounded-md border border-gray-200 dark:border-gray-700 bg-transparent px-3 py-2 pl-10 text-sm text-gray-900 dark:text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:bg-gray-800" />
+                                    <input required name="foundedDate" value={formData.foundedDate} onChange={handleChange} type="date" className="flex h-10 w-full rounded-md border border-gray-200 dark:border-gray-700 bg-transparent px-3 py-2 pl-10 text-sm text-gray-900 dark:text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent dark:bg-gray-800" />
                                 </div>
                             </div>
 
                             {/* Branch */}
                             <div className="space-y-2">
                                 <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Branch</label>
-                                <select required name="branch" value={formData.branch} onChange={handleChange} className="flex h-10 w-full rounded-md border border-gray-200 dark:border-gray-700 bg-transparent px-3 py-2 text-sm text-gray-900 dark:text-gray-100 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:bg-gray-800">
+                                <select required name="branch" value={formData.branch} onChange={handleChange} className="flex h-10 w-full rounded-md border border-gray-200 dark:border-gray-700 bg-transparent px-3 py-2 text-sm text-gray-900 dark:text-gray-100 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent dark:bg-gray-800">
                                     <option value="">Select Branch</option>
                                     <option value="main">Main Branch</option>
                                     <option value="sub">Sub Branch</option>
@@ -141,7 +141,7 @@ export default function OrganizationForm() {
                                 <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Country</label>
                                 <div className="relative">
                                     <Globe className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
-                                    <select required name="country" value={formData.country} onChange={handleChange} className="flex h-10 w-full rounded-md border border-gray-200 dark:border-gray-700 bg-transparent px-3 py-2 pl-10 text-sm text-gray-900 dark:text-gray-100 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:bg-gray-800">
+                                    <select required name="country" value={formData.country} onChange={handleChange} className="flex h-10 w-full rounded-md border border-gray-200 dark:border-gray-700 bg-transparent px-3 py-2 pl-10 text-sm text-gray-900 dark:text-gray-100 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent dark:bg-gray-800">
                                         <option value="">Select Country</option>
                                         <option value="usa">United States</option>
                                         <option value="uk">United Kingdom</option>
@@ -156,7 +156,7 @@ export default function OrganizationForm() {
                                 <label className="text-sm font-medium text-gray-700 dark:text-gray-300">State</label>
                                 <div className="relative">
                                     <MapPin className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
-                                    <select required name="state" value={formData.state} onChange={handleChange} className="flex h-10 w-full rounded-md border border-gray-200 dark:border-gray-700 bg-transparent px-3 py-2 pl-10 text-sm text-gray-900 dark:text-gray-100 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:bg-gray-800">
+                                    <select required name="state" value={formData.state} onChange={handleChange} className="flex h-10 w-full rounded-md border border-gray-200 dark:border-gray-700 bg-transparent px-3 py-2 pl-10 text-sm text-gray-900 dark:text-gray-100 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent dark:bg-gray-800">
                                         <option value="">Select State</option>
                                         <option value="ny">New York</option>
                                         <option value="ca">California</option>
@@ -169,7 +169,7 @@ export default function OrganizationForm() {
                             {/* Contact Person Name */}
                             <div className="space-y-2">
                                 <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Contact Person Name</label>
-                                <input required name="contactName" value={formData.contactName} onChange={handleChange} type="text" placeholder="John Doe" className="flex h-10 w-full rounded-md border border-gray-200 dark:border-gray-700 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:bg-gray-800 dark:text-white" />
+                                <input required name="contactName" value={formData.contactName} onChange={handleChange} type="text" placeholder="John Doe" className="flex h-10 w-full rounded-md border border-gray-200 dark:border-gray-700 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent dark:bg-gray-800 dark:text-white" />
                             </div>
 
                             {/* Contact Number */}
@@ -177,7 +177,7 @@ export default function OrganizationForm() {
                                 <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Contact Number</label>
                                 <div className="relative">
                                     <Phone className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
-                                    <input required name="contactNumber" value={formData.contactNumber} onChange={handleChange} type="tel" placeholder="+1 (555) 000-0000" className="flex h-10 w-full rounded-md border border-gray-200 dark:border-gray-700 bg-transparent px-3 py-2 pl-10 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:bg-gray-800 dark:text-white" />
+                                    <input required name="contactNumber" value={formData.contactNumber} onChange={handleChange} type="tel" placeholder="+1 (555) 000-0000" className="flex h-10 w-full rounded-md border border-gray-200 dark:border-gray-700 bg-transparent px-3 py-2 pl-10 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent dark:bg-gray-800 dark:text-white" />
                                 </div>
                             </div>
 
@@ -186,7 +186,7 @@ export default function OrganizationForm() {
                                 <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Email Address</label>
                                 <div className="relative">
                                     <Mail className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
-                                    <input required name="email" value={formData.email} onChange={handleChange} type="email" placeholder="contact@company.com" className="flex h-10 w-full rounded-md border border-gray-200 dark:border-gray-700 bg-transparent px-3 py-2 pl-10 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:bg-gray-800 dark:text-white" />
+                                    <input required name="email" value={formData.email} onChange={handleChange} type="email" placeholder="contact@company.com" className="flex h-10 w-full rounded-md border border-gray-200 dark:border-gray-700 bg-transparent px-3 py-2 pl-10 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent dark:bg-gray-800 dark:text-white" />
                                 </div>
                             </div>
 
@@ -195,7 +195,7 @@ export default function OrganizationForm() {
                                 <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Status</label>
                                 <div className="relative">
                                     <CheckCircle2 className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
-                                    <select name="status" value={formData.status} onChange={handleChange} className="flex h-10 w-full rounded-md border border-gray-200 dark:border-gray-700 bg-transparent px-3 py-2 pl-10 text-sm text-gray-900 dark:text-gray-100 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:bg-gray-800">
+                                    <select name="status" value={formData.status} onChange={handleChange} className="flex h-10 w-full rounded-md border border-gray-200 dark:border-gray-700 bg-transparent px-3 py-2 pl-10 text-sm text-gray-900 dark:text-gray-100 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent dark:bg-gray-800">
                                         <option value="pending">Pending</option>
                                         <option value="active">Active</option>
                                         <option value="inactive">Inactive</option>
@@ -206,7 +206,7 @@ export default function OrganizationForm() {
                             {/* Services / Activities */}
                             <div className="space-y-2">
                                 <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Services / Activities</label>
-                                <select multiple name="services" value={formData.services} onChange={handleMultiSelectChange} className="flex min-h-[42px] h-auto w-full rounded-md border border-gray-200 dark:border-gray-700 bg-transparent px-3 py-2 text-sm text-gray-900 dark:text-gray-100 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:bg-gray-800">
+                                <select multiple name="services" value={formData.services} onChange={handleMultiSelectChange} className="flex min-h-[42px] h-auto w-full rounded-md border border-gray-200 dark:border-gray-700 bg-transparent px-3 py-2 text-sm text-gray-900 dark:text-gray-100 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent dark:bg-gray-800">
                                     <option value="it">IT Services</option>
                                     <option value="consulting">Consulting</option>
                                     <option value="manufacturing">Manufacturing</option>
@@ -222,23 +222,23 @@ export default function OrganizationForm() {
                             {/* Location / Address */}
                             <div className="space-y-2">
                                 <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Location / Address</label>
-                                <textarea required name="address" value={formData.address} onChange={handleChange} rows={4} placeholder="1234 Main St, Suite 100..." className="flex w-full rounded-md border border-gray-200 dark:border-gray-700 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:bg-gray-800 dark:text-white resize-none" />
+                                <textarea required name="address" value={formData.address} onChange={handleChange} rows={4} placeholder="1234 Main St, Suite 100..." className="flex w-full rounded-md border border-gray-200 dark:border-gray-700 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent dark:bg-gray-800 dark:text-white resize-none" />
                             </div>
 
                             {/* Organization Description */}
                             <div className="space-y-2">
                                 <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Organization Description</label>
-                                <textarea required name="description" value={formData.description} onChange={handleChange} rows={4} placeholder="Brief description about the organization..." className="flex w-full rounded-md border border-gray-200 dark:border-gray-700 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:bg-gray-800 dark:text-white resize-none" />
+                                <textarea required name="description" value={formData.description} onChange={handleChange} rows={4} placeholder="Brief description about the organization..." className="flex w-full rounded-md border border-gray-200 dark:border-gray-700 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent dark:bg-gray-800 dark:text-white resize-none" />
                             </div>
                         </div>
 
                         {/* Upload Documents / Logo */}
                         <div className="mt-8">
                             <label className="text-sm font-medium text-gray-700 dark:text-gray-300 block mb-2">Upload Documents / Logo</label>
-                            <div className="border-2 border-dashed border-gray-200 dark:border-gray-700 rounded-xl p-8 transition-colors hover:border-indigo-500 dark:hover:border-indigo-500 group cursor-pointer bg-gray-50 dark:bg-gray-800/50 relative">
+                            <div className="border-2 border-dashed border-gray-200 dark:border-gray-700 rounded-xl p-8 transition-colors hover:border-brand dark:hover:border-brand group cursor-pointer bg-gray-50 dark:bg-gray-800/50 relative">
                                 <div className="flex flex-col items-center justify-center text-center">
-                                    <div className="p-3 bg-indigo-50 dark:bg-indigo-900/20 rounded-full group-hover:scale-110 transition-transform duration-300">
-                                        <Upload className="h-6 w-6 text-indigo-600 dark:text-indigo-400" />
+                                    <div className="p-3 bg-brand/10 dark:bg-brand/20 rounded-full group-hover:scale-110 transition-transform duration-300">
+                                        <Upload className="h-6 w-6 text-brand dark:text-brand/80" />
                                     </div>
                                     <div className="mt-4">
                                         <p className="text-sm font-medium text-gray-900 dark:text-white">
@@ -264,7 +264,7 @@ export default function OrganizationForm() {
                             </button>
                             <button
                                 type="submit"
-                                className="px-6 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg shadow-lg shadow-indigo-200 dark:shadow-indigo-900/30 transition-all hover:scale-105"
+                                className="px-6 py-2 bg-brand hover:bg-brand/90 text-white font-medium rounded-lg shadow-lg shadow-brand/20 dark:shadow-brand/30 transition-all hover:scale-105"
                             >
                                 Confirm Details
                             </button>
@@ -276,9 +276,9 @@ export default function OrganizationForm() {
             {/* Preview Modal */}
             <Modal isOpen={isPreviewOpen} onClose={() => setIsPreviewOpen(false)} title="Confirm Organization Details">
                 <div className="space-y-6">
-                    <div className="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg flex items-start gap-3">
-                        <AlertCircle className="w-5 h-5 text-indigo-600 dark:text-indigo-400 flex-shrink-0 mt-0.5" />
-                        <p className="text-sm text-indigo-800 dark:text-indigo-300">
+                    <div className="bg-brand/10 dark:bg-brand/20 p-4 rounded-lg flex items-start gap-3">
+                        <AlertCircle className="w-5 h-5 text-brand dark:text-brand/80 shrink-0 mt-0.5" />
+                        <p className="text-sm text-brand/90 dark:text-brand/70">
                             Please review all details carefully before saving.
                         </p>
                     </div>
@@ -325,7 +325,7 @@ export default function OrganizationForm() {
                         </button>
                         <button
                             onClick={handleSave}
-                            className="px-6 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg shadow-lg shadow-indigo-200 dark:shadow-indigo-900/30 transition-all hover:scale-105"
+                            className="px-6 py-2 bg-brand hover:bg-brand/90 text-white font-medium rounded-lg shadow-lg shadow-brand/20 dark:shadow-brand/30 transition-all hover:scale-105"
                         >
                             Save Data
                         </button>

@@ -51,7 +51,7 @@ export default function ProfilePage() {
             >
                 {/* Profile Header Card */}
                 <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden ring-1 ring-gray-900/5 dark:ring-white/10 mb-6">
-                    <div className="h-32 bg-gradient-to-r from-indigo-500 to-purple-600"></div>
+                    <div className="h-32 bg-brand"></div>
                     <div className="px-6 pb-6">
                         <div className="relative flex items-end -mt-12 mb-6">
                             <div className="relative group cursor-pointer" onClick={handleEditClick}>
@@ -66,7 +66,7 @@ export default function ProfilePage() {
                                 <div className="absolute inset-0 bg-black/30 rounded-full opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                                     <Camera className="w-6 h-6 text-white" />
                                 </div>
-                                <button className="absolute bottom-0 right-0 p-1.5 rounded-full bg-indigo-600 text-white hover:bg-indigo-700 transition-colors shadow-sm z-10">
+                                <button className="absolute bottom-0 right-0 p-1.5 rounded-full bg-brand text-white hover:bg-brand/90 transition-colors shadow-sm z-10">
                                     <Camera className="w-4 h-4" />
                                 </button>
                             </div>
@@ -77,7 +77,7 @@ export default function ProfilePage() {
                             <div className="ml-auto mb-1">
                                 <button
                                     onClick={handleEditClick}
-                                    className="flex items-center gap-2 px-4 py-2 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 rounded-lg hover:bg-indigo-100 dark:hover:bg-indigo-900/50 transition-colors font-medium text-sm"
+                                    className="flex items-center gap-2 px-4 py-2 bg-brand/10 dark:bg-brand/30 text-brand dark:text-brand/80 rounded-lg hover:bg-brand/20 dark:hover:bg-brand/40 transition-colors font-medium text-sm"
                                 >
                                     <Edit2 className="w-4 h-4" />
                                     Edit Profile
@@ -137,7 +137,7 @@ export default function ProfilePage() {
                 <div className="space-y-6">
                     {/* Image Upload in Modal */}
                     <div className="flex flex-col items-center justify-center">
-                        <div className="relative h-24 w-24 rounded-full bg-gray-100 dark:bg-gray-700 overflow-hidden mb-4 ring-2 ring-indigo-500 ring-offset-2 dark:ring-offset-gray-800">
+                        <div className="relative h-24 w-24 rounded-full bg-gray-100 dark:bg-gray-700 overflow-hidden mb-4 ring-2 ring-brand ring-offset-2 dark:ring-offset-gray-800">
                             {editForm.avatar ? (
                                 // eslint-disable-next-line @next/next/no-img-element
                                 <img src={editForm.avatar} alt="Preview" className="h-full w-full object-cover" />
@@ -149,7 +149,7 @@ export default function ProfilePage() {
                                 <input type="file" id="modal-upload" onChange={handleImageUpload} className="hidden" accept="image/*" />
                             </label>
                         </div>
-                        <label htmlFor="modal-upload-btn" className="cursor-pointer flex items-center gap-2 text-sm text-indigo-600 hover:text-indigo-500 font-medium">
+                        <label htmlFor="modal-upload-btn" className="cursor-pointer flex items-center gap-2 text-sm text-brand hover:text-brand/80 font-medium">
                             <Upload className="w-4 h-4" /> Change Photo
                             <input type="file" id="modal-upload-btn" onChange={handleImageUpload} className="hidden" accept="image/*" />
                         </label>
@@ -165,7 +165,7 @@ export default function ProfilePage() {
                                     value={editForm.name}
                                     onChange={handleInputChange}
                                     type="text"
-                                    className="flex h-10 w-full rounded-md border border-gray-200 dark:border-gray-700 bg-transparent px-3 py-2 pl-10 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-800 dark:text-white"
+                                    className="flex h-10 w-full rounded-md border border-gray-200 dark:border-gray-700 bg-transparent px-3 py-2 pl-10 text-sm focus:outline-none focus:ring-2 focus:ring-brand dark:bg-gray-800 dark:text-white"
                                 />
                             </div>
                         </div>
@@ -178,7 +178,7 @@ export default function ProfilePage() {
                                     value={editForm.role}
                                     onChange={handleInputChange}
                                     type="text"
-                                    className="flex h-10 w-full rounded-md border border-gray-200 dark:border-gray-700 bg-transparent px-3 py-2 pl-10 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-800 dark:text-white"
+                                    className="flex h-10 w-full rounded-md border border-gray-200 dark:border-gray-700 bg-transparent px-3 py-2 pl-10 text-sm focus:outline-none focus:ring-2 focus:ring-brand dark:bg-gray-800 dark:text-white"
                                 />
                             </div>
                         </div>
@@ -191,7 +191,7 @@ export default function ProfilePage() {
                                     value={editForm.email}
                                     onChange={handleInputChange}
                                     type="email"
-                                    className="flex h-10 w-full rounded-md border border-gray-200 dark:border-gray-700 bg-transparent px-3 py-2 pl-10 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-800 dark:text-white"
+                                    className="flex h-10 w-full rounded-md border border-gray-200 dark:border-gray-700 bg-transparent px-3 py-2 pl-10 text-sm focus:outline-none focus:ring-2 focus:ring-brand dark:bg-gray-800 dark:text-white"
                                 />
                             </div>
                         </div>
@@ -206,7 +206,7 @@ export default function ProfilePage() {
                         </button>
                         <button
                             onClick={handleSave}
-                            className="px-6 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg shadow-lg shadow-indigo-200 dark:shadow-indigo-900/30 transition-all hover:scale-105"
+                            className="px-6 py-2 bg-brand hover:bg-brand/90 text-white font-medium rounded-lg shadow-lg shadow-brand/20 dark:shadow-brand/30 transition-all hover:scale-105"
                         >
                             Save Changes
                         </button>

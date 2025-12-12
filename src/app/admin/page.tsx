@@ -87,7 +87,7 @@ export default function AdminPage() {
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
                     <div>
                         <h1 className="text-3xl font-bold text-gray-900 dark:text-white flex items-center gap-3">
-                            <Shield className="w-8 h-8 text-indigo-600 dark:text-indigo-400" />
+                            <Shield className="w-8 h-8 text-brand dark:text-brand/80" />
                             Admin Console
                         </h1>
                         <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
@@ -128,7 +128,7 @@ export default function AdminPage() {
                                                 value={filters._id}
                                                 onChange={handleFilterChange}
                                                 type="text"
-                                                className="w-full px-2 py-1 text-xs border rounded dark:bg-gray-700 dark:border-gray-600 focus:ring-1 focus:ring-indigo-500"
+                                                className="w-full px-2 py-1 text-xs border rounded dark:bg-gray-700 dark:border-gray-600 focus:ring-1 focus:ring-brand"
                                                 placeholder="Filter ID"
                                             />
                                             <Search className="w-3 h-3 absolute right-2 top-1.5 text-gray-400" />
@@ -141,7 +141,7 @@ export default function AdminPage() {
                                                 value={filters.Fullname}
                                                 onChange={handleFilterChange}
                                                 type="text"
-                                                className="w-full px-2 py-1 text-xs border rounded dark:bg-gray-700 dark:border-gray-600 focus:ring-1 focus:ring-indigo-500"
+                                                className="w-full px-2 py-1 text-xs border rounded dark:bg-gray-700 dark:border-gray-600 focus:ring-1 focus:ring-brand"
                                                 placeholder="Filter Name"
                                             />
                                             <Search className="w-3 h-3 absolute right-2 top-1.5 text-gray-400" />
@@ -154,7 +154,7 @@ export default function AdminPage() {
                                                 value={filters.Email}
                                                 onChange={handleFilterChange}
                                                 type="text"
-                                                className="w-full px-2 py-1 text-xs border rounded dark:bg-gray-700 dark:border-gray-600 focus:ring-1 focus:ring-indigo-500"
+                                                className="w-full px-2 py-1 text-xs border rounded dark:bg-gray-700 dark:border-gray-600 focus:ring-1 focus:ring-brand"
                                                 placeholder="Filter Email"
                                             />
                                             <Search className="w-3 h-3 absolute right-2 top-1.5 text-gray-400" />
@@ -168,7 +168,7 @@ export default function AdminPage() {
                                             name="Role"
                                             value={filters.Role}
                                             onChange={handleFilterChange}
-                                            className="w-full px-2 py-1 text-xs border rounded dark:bg-gray-700 dark:border-gray-600 focus:ring-1 focus:ring-indigo-500"
+                                            className="w-full px-2 py-1 text-xs border rounded dark:bg-gray-700 dark:border-gray-600 focus:ring-1 focus:ring-brand"
                                         >
                                             <option value="">All</option>
                                             <option value="Admin">Admin</option>
@@ -220,7 +220,7 @@ export default function AdminPage() {
                                             </td>
                                             <td className="px-4 py-3 text-right">
                                                 <div className="flex items-center justify-end gap-2">
-                                                    <button className="p-1.5 text-white bg-indigo-600 rounded-md hover:bg-indigo-700 shadow-sm transition-colors text-xs flex items-center gap-1">
+                                                    <button className="p-1.5 text-white bg-brand rounded-md hover:bg-brand/90 shadow-sm transition-colors text-xs flex items-center gap-1">
                                                         <Edit2 className="w-3 h-3" /> Edit
                                                     </button>
                                                     <button className="p-1.5 text-white bg-red-600 rounded-md hover:bg-red-700 shadow-sm transition-colors text-xs flex items-center gap-1">

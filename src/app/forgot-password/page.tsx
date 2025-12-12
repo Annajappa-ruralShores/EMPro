@@ -37,7 +37,7 @@ export default function ForgotPasswordPage() {
                                     type="email"
                                     id="email"
                                     placeholder="name@example.com"
-                                    className="flex h-10 w-full rounded-md border border-gray-200 dark:border-gray-700 bg-transparent px-3 py-2 pl-10 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent disabled:cursor-not-allowed disabled:opacity-50 dark:bg-gray-800 dark:text-white"
+                                    className="flex h-10 w-full rounded-md border border-gray-200 dark:border-gray-700 bg-transparent px-3 py-2 pl-10 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent disabled:cursor-not-allowed disabled:opacity-50 dark:bg-gray-800 dark:text-white"
                                 />
                             </div>
                         </div>
@@ -46,7 +46,7 @@ export default function ForgotPasswordPage() {
                             whileHover={{ scale: 1.01 }}
                             whileTap={{ scale: 0.99 }}
                             type="submit"
-                            className="w-full h-10 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-md flex items-center justify-center gap-2 transition-colors"
+                            className="w-full h-10 bg-brand hover:bg-brand/90 text-white font-medium rounded-md flex items-center justify-center gap-2 transition-colors"
                         >
                             Send Reset Link <ArrowRight className="w-4 h-4" />
                         </motion.button>
