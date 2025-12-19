@@ -10,10 +10,13 @@ export default function AdminDashboard() {
         helpCount: 0
     });
 
+    const [loading, setLoading] = useState(false);
+
     useEffect(() => {
         const fetchStats = async () => {
             // In a real app, optimize this to a single stats API call
             try {
+                setLoading(true);
                 const [usersRes, helpRes] = await Promise.all([
                     axios.get('/api/users'),
                     axios.get('/api/help')
@@ -24,6 +27,8 @@ export default function AdminDashboard() {
                 });
             } catch (error) {
                 console.error("Failed to fetch stats", error);
+            } finally {
+                setLoading(false);
             }
         };
         fetchStats();
@@ -39,7 +44,7 @@ export default function AdminDashboard() {
                     <div className="flex items-center justify-between">
                         <div>
                             <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Total Users</p>
-                            <h3 className="text-3xl font-bold text-gray-900 dark:text-white mt-1">{stats.usersCount}</h3>
+                            <h3 className="text-3xl font-bold text-gray-900 dark:text-white mt-1">{loading ? "..." : stats.usersCount}</h3>
                         </div>
                         <div className="p-3 bg-blue-100 dark:bg-blue-900/30 rounded-xl text-blue-600 dark:text-blue-400">
                             <Users className="w-6 h-6" />
@@ -52,7 +57,7 @@ export default function AdminDashboard() {
                     <div className="flex items-center justify-between">
                         <div>
                             <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Help Requests</p>
-                            <h3 className="text-3xl font-bold text-gray-900 dark:text-white mt-1">{stats.helpCount}</h3>
+                            <h3 className="text-3xl font-bold text-gray-900 dark:text-white mt-1">{loading ? "..." : stats.helpCount}</h3>
                         </div>
                         <div className="p-3 bg-yellow-100 dark:bg-yellow-900/30 rounded-xl text-yellow-600 dark:text-yellow-400">
                             <HelpCircle className="w-6 h-6" />
