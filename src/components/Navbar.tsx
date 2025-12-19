@@ -106,9 +106,9 @@ export default function Navbar({ username = "Guest", userImage }: NavbarProps) {
                                                     className="h-full w-full object-cover"
                                                 />
                                             ) : (
-                                                <Link className="h-full w-full flex items-center justify-center" href="/profile">
+                                                <div className="h-full w-full flex items-center justify-center" onClick={() => router.push("/profile")}>
                                                     <UserIcon className="w-5 h-5 text-gray-500 dark:text-gray-400 group-hover:text-brand dark:group-hover:text-brand transition-colors" />
-                                                </Link>
+                                                </div>
                                             )}
                                         </div>
                                     </Link>
