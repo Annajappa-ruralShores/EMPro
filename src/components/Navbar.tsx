@@ -2,11 +2,13 @@
 
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { LogOut, User as UserIcon, Building2, ChevronDown, ShieldCheck, UserCircle } from 'lucide-react';
-import { useState } from 'react';
+import { LogOut, User as UserIcon, Building2, ChevronDown, ShieldCheck, UserCircle, HelpCircle } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 import Image from 'next/image';
 import CompanyLogo from '@/app/assets/company_logo.png';
+import axios from 'axios';
+import { useRouter } from 'next/navigation';
 
 interface NavbarProps {
     username?: string;
@@ -14,10 +16,47 @@ interface NavbarProps {
 }
 
 export default function Navbar({ username = "Guest", userImage }: NavbarProps) {
-    // If username is "Guest", we consider them not logged in for this UI demo.
-    // In a real app, you'd check a proper auth state.
-    const isLoggedIn = username !== "Guest";
+    const [currentUsername, setCurrentUsername] = useState(username);
+    // Force re-render on mount to check auth
+
+    useEffect(() => {
+        checkUser();
+
+        // Listen for custom event 'auth-change'
+        const handleAuthChange = () => checkUser();
+        window.addEventListener('auth-change', handleAuthChange);
+        return () => window.removeEventListener('auth-change', handleAuthChange);
+    }, []);
+
+    const checkUser = async () => {
+        try {
+            const res = await axios.get('/api/users/me');
+            if (res.data.data) {
+                setCurrentUsername(res.data.data.Fullname);
+            }
+        } catch (e) {
+            setCurrentUsername("Guest");
+        }
+    }
+
+    const isLoggedIn = currentUsername !== "Guest";
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const router = useRouter()
+
+    const handleLogout = async () => {
+        try {
+            const response = await axios.get("/api/users/logout")
+            if (response.status === 200) {
+                setCurrentUsername("Guest");
+                // Dispatch event to update other components if needed
+                window.dispatchEvent(new Event('auth-change'));
+                router.push("/login")
+            }
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     return (
         <motion.nav
@@ -53,7 +92,7 @@ export default function Navbar({ username = "Guest", userImage }: NavbarProps) {
                                     <div className="text-right hidden sm:block">
                                         <p className="text-sm text-gray-500 dark:text-gray-400">Welcome,</p>
                                         <p className="text-sm font-semibold text-gray-900 dark:text-white capitalize">
-                                            {username}
+                                            {currentUsername}
                                         </p>
                                     </div>
 
@@ -76,6 +115,7 @@ export default function Navbar({ username = "Guest", userImage }: NavbarProps) {
                                 </div>
                                 <div className="h-6 w-px bg-gray-200 dark:bg-gray-700 hidden sm:block"></div>
                                 <button
+                                    onClick={handleLogout}
                                     className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors"
                                 >
                                     <LogOut className="w-4 h-4" />
@@ -116,6 +156,22 @@ export default function Navbar({ username = "Guest", userImage }: NavbarProps) {
                                                         <span className="text-xs text-gray-500 dark:text-gray-400">Access your account</span>
                                                     </div>
                                                 </Link>
+                                                <Link
+                                                    href="/support"
+                                                    className="flex items-center gap-3 px-4 py-3 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-lg transition-colors"
+                                                    onClick={() => setIsDropdownOpen(false)}
+                                                >
+                                                    <div className="p-1.5 bg-green-100 text-green-600 rounded-lg dark:bg-green-900/30 dark:text-green-400">
+                                                        <HelpCircle className="w-4 h-4" />
+                                                    </div>
+                                                    <div>
+                                                        <span className="font-semibold block">Help & Support</span>
+                                                        <span className="text-xs text-gray-500 dark:text-gray-400">Need assistance?</span>
+                                                    </div>
+                                                </Link>
+
+                                                <div className="h-px bg-gray-100 dark:bg-gray-700 my-1"></div>
+
                                                 <Link
                                                     href="/admin/login"
                                                     className="flex items-center gap-3 px-4 py-3 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-lg transition-colors"

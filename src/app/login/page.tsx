@@ -3,8 +3,36 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Mail, Lock, ArrowRight, Github } from 'lucide-react';
+import axios from 'axios';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function LoginPage() {
+    const [userLogin, setuserLogin] = useState({
+        Email: "",
+        Password: ""
+    })
+
+    const router = useRouter();
+
+    const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        try {
+            const response = await axios.post("/api/users/login", userLogin);
+            console.log(response.data);
+            // Dispatch update for Navbar
+            window.dispatchEvent(new Event('auth-change'));
+            router.push("/form");
+        } catch (error: any) {
+            console.log(error);
+            // Check if it's an axios error with a response
+            if (error.response && error.response.data && error.response.data.message) {
+                alert(error.response.data.message);
+            } else {
+                alert(error.message || "An unexpected error occurred");
+            }
+        }
+    }
     return (
         <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center p-4">
             <motion.div
@@ -23,7 +51,7 @@ export default function LoginPage() {
                         </p>
                     </div>
 
-                    <form className="space-y-6">
+                    <form className="space-y-6" onSubmit={handleLogin}>
                         <div className="space-y-2">
                             <label
                                 htmlFor="email"
@@ -36,6 +64,8 @@ export default function LoginPage() {
                                 <input
                                     type="email"
                                     id="email"
+                                    value={userLogin.Email}
+                                    onChange={(e) => setuserLogin({ ...userLogin, Email: e.target.value })}
                                     placeholder="name@example.com"
                                     className="flex h-10 w-full rounded-md border border-gray-200 dark:border-gray-700 bg-transparent px-3 py-2 pl-10 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent disabled:cursor-not-allowed disabled:opacity-50 dark:bg-gray-800 dark:text-white"
                                 />
@@ -54,6 +84,8 @@ export default function LoginPage() {
                                 <input
                                     type="password"
                                     id="password"
+                                    value={userLogin.Password}
+                                    onChange={(e) => setuserLogin({ ...userLogin, Password: e.target.value })}
                                     placeholder="••••••••"
                                     className="flex h-10 w-full rounded-md border border-gray-200 dark:border-gray-700 bg-transparent px-3 py-2 pl-10 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent disabled:cursor-not-allowed disabled:opacity-50 dark:bg-gray-800 dark:text-white"
                                 />
@@ -104,15 +136,7 @@ export default function LoginPage() {
                             </div>
                         </div>
 
-                        <div className="mt-6 grid grid-cols-2 gap-3">
-                            <button
-                                type="button"
-                                className="flex w-full items-center justify-center gap-2 rounded-md border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-brand focus:ring-offset-2 transition-colors"
-                            >
-                                <Github className="h-4 w-4" />
-                                <span className="sr-only">Github</span>
-                                Github
-                            </button>
+                        <div className="mt-6 grid grid-cols-1 gap-3">
                             <button
                                 type="button"
                                 className="flex w-full items-center justify-center gap-2 rounded-md border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-brand focus:ring-offset-2 transition-colors"

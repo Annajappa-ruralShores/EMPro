@@ -30,7 +30,7 @@ export default function NotFound() {
                 </p>
 
                 <Link
-                    href="/form"
+                    href="/login"
                     className="inline-flex items-center gap-2 px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg transition-colors shadow-lg shadow-indigo-200 dark:shadow-indigo-900/30"
                 >
                     <Home className="w-5 h-5" />

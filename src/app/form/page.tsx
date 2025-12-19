@@ -4,10 +4,13 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Upload, Calendar, Building2, MapPin, Globe, Phone, Mail, FileText, CheckCircle2, AlertCircle } from 'lucide-react';
 import Modal from '@/components/Modal';
+import axios from 'axios';
+import { Country, State } from "country-state-city";
 
 export default function OrganizationForm() {
     const [isPreviewOpen, setIsPreviewOpen] = useState(false);
     const [fileName, setFileName] = useState<string | null>(null);
+
 
     // Initial State
     const initialFormData = {
@@ -28,6 +31,11 @@ export default function OrganizationForm() {
     };
 
     const [formData, setFormData] = useState(initialFormData);
+
+    const countries = Country.getAllCountries();
+    const states = formData.country
+        ? State.getStatesOfCountry(formData.country)
+        : [];
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
@@ -57,13 +65,21 @@ export default function OrganizationForm() {
         setIsPreviewOpen(true);
     };
 
-    const handleSave = () => {
-        // Here you would save to database
-        console.log('Saving Data to DB:', { ...formData, fileName });
-        alert('Data saved successfully! (Check console)');
-        setIsPreviewOpen(false);
-        setFormData(initialFormData);
-        setFileName(null);
+    const handleSave = async () => {
+        try {
+            const payload = { ...formData, fileName };
+            const response = await axios.post('/api/form', payload);
+
+            if (response.status === 201) {
+                alert('Data saved successfully!');
+                setIsPreviewOpen(false);
+                setFormData(initialFormData);
+                setFileName(null);
+            }
+        } catch (error: any) {
+            console.error('Error saving data:', error);
+            alert(error.response?.data?.message || 'Failed to save data. Please try again.');
+        }
     };
 
     return (
@@ -141,13 +157,21 @@ export default function OrganizationForm() {
                                 <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Country</label>
                                 <div className="relative">
                                     <Globe className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
-                                    <select required name="country" value={formData.country} onChange={handleChange} className="flex h-10 w-full rounded-md border border-gray-200 dark:border-gray-700 bg-transparent px-3 py-2 pl-10 text-sm text-gray-900 dark:text-gray-100 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent dark:bg-gray-800">
+                                    <select
+                                        name="country"
+                                        value={formData.country}
+                                        onChange={handleChange}
+                                        required
+                                        className="flex h-10 w-full rounded-md border px-3 py-2 pl-10"
+                                    >
                                         <option value="">Select Country</option>
-                                        <option value="usa">United States</option>
-                                        <option value="uk">United Kingdom</option>
-                                        <option value="india">India</option>
-                                        <option value="canada">Canada</option>
+                                        {countries.map((country) => (
+                                            <option key={country.isoCode} value={country.isoCode}>
+                                                {country.name}
+                                            </option>
+                                        ))}
                                     </select>
+
                                 </div>
                             </div>
 
@@ -156,13 +180,22 @@ export default function OrganizationForm() {
                                 <label className="text-sm font-medium text-gray-700 dark:text-gray-300">State</label>
                                 <div className="relative">
                                     <MapPin className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
-                                    <select required name="state" value={formData.state} onChange={handleChange} className="flex h-10 w-full rounded-md border border-gray-200 dark:border-gray-700 bg-transparent px-3 py-2 pl-10 text-sm text-gray-900 dark:text-gray-100 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent dark:bg-gray-800">
+                                    <select
+                                        name="state"
+                                        value={formData.state}
+                                        onChange={handleChange}
+                                        required
+                                        disabled={!formData.country}
+                                        className="flex h-10 w-full rounded-md border px-3 py-2 pl-10"
+                                    >
                                         <option value="">Select State</option>
-                                        <option value="ny">New York</option>
-                                        <option value="ca">California</option>
-                                        <option value="dl">Delhi</option>
-                                        <option value="mh">Maharashtra</option>
+                                        {states.map((state) => (
+                                            <option key={state.isoCode} value={state.isoCode}>
+                                                {state.name}
+                                            </option>
+                                        ))}
                                     </select>
+
                                 </div>
                             </div>
 

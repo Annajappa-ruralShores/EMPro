@@ -4,8 +4,13 @@ export interface IUser extends Document {
     Fullname: string,
     Email: string,
     Password: string,
+    isAdmin: boolean,
     image: string,
-    role: string,
+    isVerified: boolean,
+    forgotPasswordToken: String,
+    forgotPasswordTokenExpiry: Date,
+    verifyToken: String,
+    verifyTokenExpiry: Date,
     createdAt?: Date,
     updatedAt?: Date
 }
@@ -13,24 +18,32 @@ export interface IUser extends Document {
 const userSchema = new mongoose.Schema<IUser>({
     Fullname: {
         type: String,
-        required: true
+        required: [true, "Please Provide Fullname"],
     },
     Email: {
         type: String,
-        required: true
+        required: [true, "Please Provide Email"],
     },
     Password: {
         type: String,
-        required: true
+        required: [true, "Please Provide Password"],
     },
     image: {
         type: String,
+        default: ""
     },
-    role: {
-        type: String,
-        enum: ["Admin", "User"],
-        default: "User"
-    }
+    isAdmin: {
+        type: Boolean,
+        default: false
+    },
+    isVerified: {
+        type: Boolean,
+        default: false
+    },
+    forgotPasswordToken: String,
+    forgotPasswordTokenExpiry: Date,
+    verifyToken: String,
+    verifyTokenExpiry: Date
 
 }, {
     timestamps: true

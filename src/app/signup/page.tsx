@@ -3,8 +3,41 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { User, Mail, Lock, ArrowRight, Github } from 'lucide-react';
+import { useState } from 'react';
+import axios from "axios";
+import { useRouter } from 'next/navigation';
 
 export default function SignupPage() {
+
+    const router = useRouter();
+    const [usersignup, setusersignup] = useState({
+        Fullname: "",
+        Email: "",
+        Password: "",
+    })
+
+    const handleSignup = async (e: React.FormEvent) => {
+        e.preventDefault();
+        try {
+            const response = await axios.post("/api/users/signup", usersignup)
+            console.log(response.data);
+            alert("User Registered Successfully");
+            setusersignup({
+                Fullname: "",
+                Email: "",
+                Password: "",
+            })
+            router.push("/login");
+
+        } catch (error: any) {
+            console.log(error);
+            if (error.response && error.response.data && error.response.data.message) {
+                alert(error.response.data.message);
+            } else {
+                alert(error.message || "Signup failed");
+            }
+        }
+    }
     return (
         <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center p-4">
             <motion.div
@@ -23,7 +56,7 @@ export default function SignupPage() {
                         </p>
                     </div>
 
-                    <form className="space-y-6">
+                    <form className="space-y-6" onSubmit={handleSignup}>
                         <div className="space-y-2">
                             <label
                                 htmlFor="name"
@@ -36,6 +69,8 @@ export default function SignupPage() {
                                 <input
                                     type="text"
                                     id="name"
+                                    value={usersignup.Fullname}
+                                    onChange={(e) => setusersignup({ ...usersignup, Fullname: e.target.value })}
                                     placeholder="John Doe"
                                     className="flex h-10 w-full rounded-md border border-gray-200 dark:border-gray-700 bg-transparent px-3 py-2 pl-10 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent disabled:cursor-not-allowed disabled:opacity-50 dark:bg-gray-800 dark:text-white"
                                 />
@@ -54,6 +89,8 @@ export default function SignupPage() {
                                 <input
                                     type="email"
                                     id="email"
+                                    value={usersignup.Email}
+                                    onChange={(e) => setusersignup({ ...usersignup, Email: e.target.value })}
                                     placeholder="name@example.com"
                                     className="flex h-10 w-full rounded-md border border-gray-200 dark:border-gray-700 bg-transparent px-3 py-2 pl-10 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent disabled:cursor-not-allowed disabled:opacity-50 dark:bg-gray-800 dark:text-white"
                                 />
@@ -72,6 +109,8 @@ export default function SignupPage() {
                                 <input
                                     type="password"
                                     id="password"
+                                    value={usersignup.Password}
+                                    onChange={(e) => setusersignup({ ...usersignup, Password: e.target.value })}
                                     placeholder="••••••••"
                                     className="flex h-10 w-full rounded-md border border-gray-200 dark:border-gray-700 bg-transparent px-3 py-2 pl-10 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent disabled:cursor-not-allowed disabled:opacity-50 dark:bg-gray-800 dark:text-white"
                                 />
