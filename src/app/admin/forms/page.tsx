@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { motion } from 'framer-motion';
 import { FileText, Calendar, User, Search, Eye, Edit2, Trash2 } from 'lucide-react';
+import { toast } from 'react-toastify';
 
 export default function AdminFormsPage() {
     const [forms, setForms] = useState<any[]>([]);
@@ -43,13 +44,16 @@ export default function AdminFormsPage() {
 
     // Delete Form
     const handleDelete = async (formId: string) => {
-        if (confirm("Are you sure you want to delete this form? This action cannot be undone.")) {
+        if (confirm("Are you sure you want to delete this form?")) {
             try {
-                await axios.delete(`/api/form/${formId}`);
+                let response = await axios.delete(`/api/form/${formId}`);
+                if (response.status === 200) {
+                    toast.success("Form deleted successfully");
+                }
                 setForms(forms.filter(f => f._id !== formId));
             } catch (error) {
                 console.error("Failed to delete form", error);
-                alert("Failed to delete form");
+                toast.error("Failed to delete form");
             }
         }
     };
@@ -68,12 +72,14 @@ export default function AdminFormsPage() {
             const res = await axios.put(`/api/form/${_id}`, updateData);
 
             // Update local state
+            if (res.status === 200) {
+                toast.success("Form updated successfully");
+            }
             setForms(forms.map(f => f._id === _id ? res.data.data : f));
             setIsEditModalOpen(false);
-            alert("Form updated successfully");
         } catch (error) {
             console.error("Failed to update form", error);
-            alert("Failed to update form");
+            toast.error("Failed to update form");
         }
     };
 

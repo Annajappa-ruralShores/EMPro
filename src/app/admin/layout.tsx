@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import { LayoutDashboard, Users, HelpCircle, LogOut, FileText } from 'lucide-react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
+import { toast } from 'react-toastify';
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
     const pathname = usePathname();
@@ -17,10 +18,14 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
     const handleLogout = async () => {
         try {
-            await axios.get("/api/users/logout");
+            let response = await axios.get("/api/users/logout");
+            if (response.status === 200) {
+                toast.success("User logged out successfully");
+            }
             router.push("/login");
         } catch (error) {
             console.error("Logout failed", error);
+            toast.error("Logout failed");
         }
     }
 
@@ -60,7 +65,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                     })}
                 </nav>
 
-                <div className="p-4 border-t border-gray-200 dark:border-gray-700">
+                {/* <div className="p-4 border-t border-gray-200 dark:border-gray-700">
                     <button
                         onClick={handleLogout}
                         className="flex w-full items-center gap-3 px-4 py-3 text-sm font-medium text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors"
@@ -68,7 +73,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                         <LogOut className="w-5 h-5" />
                         Logout
                     </button>
-                </div>
+                </div> */}
             </aside>
 
             {/* Main Content */}
