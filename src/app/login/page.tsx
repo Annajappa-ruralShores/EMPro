@@ -6,6 +6,7 @@ import { Mail, Lock, ArrowRight, Github } from 'lucide-react';
 import axios from 'axios';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { toast } from 'react-toastify';
 
 export default function LoginPage() {
     const [userLogin, setuserLogin] = useState({
@@ -19,17 +20,22 @@ export default function LoginPage() {
         e.preventDefault();
         try {
             const response = await axios.post("/api/users/login", userLogin);
-            console.log(response.data);
             // Dispatch update for Navbar
+            if (response.status !== 200) {
+                toast.error("Invalid credentials");
+                return;
+            }
+
+            toast.success("Login successful");
             window.dispatchEvent(new Event('auth-change'));
             router.push("/form");
         } catch (error: any) {
             console.log(error);
             // Check if it's an axios error with a response
             if (error.response && error.response.data && error.response.data.message) {
-                alert(error.response.data.message);
+                toast.error(error.response.data.message);
             } else {
-                alert(error.message || "An unexpected error occurred");
+                toast.error(error.message || "An unexpected error occurred");
             }
         }
     }

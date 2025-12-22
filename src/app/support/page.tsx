@@ -5,6 +5,7 @@ import axios from 'axios';
 import { motion } from 'framer-motion';
 import { HelpCircle, Send, CheckCircle, AlertCircle } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import { toast } from 'react-toastify';
 
 export default function SupportPage() {
     const router = useRouter();
@@ -24,12 +25,16 @@ export default function SupportPage() {
             // Retrieve user info if available (e.g., from local storage or context if implemented)
             // For now, we rely on user input, but we could pre-fill if we fetched 'me' API here.
 
-            await axios.post('/api/help', formData);
+            let response = await axios.post('/api/help', formData);
+            if (response.status === 201) {
+                toast.success("Request submitted successfully");
+            }
             setStatus('success');
             setFormData({ username: "", email: "", subject: "", message: "" });
         } catch (error: any) {
             setStatus('error');
             setErrorMessage(error.response?.data?.message || "Failed to submit request");
+            toast.error(error.response?.data?.message || "Failed to submit request");
         }
     };
 
