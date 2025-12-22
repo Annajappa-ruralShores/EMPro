@@ -9,6 +9,7 @@ import Image from 'next/image';
 import CompanyLogo from '@/app/assets/company_logo.png';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
+import { toast } from 'react-toastify';
 
 interface NavbarProps {
     username?: string;
@@ -50,6 +51,7 @@ export default function Navbar({ username = "Guest", userImage }: NavbarProps) {
                 setCurrentUsername("Guest");
                 // Dispatch event to update other components if needed
                 window.dispatchEvent(new Event('auth-change'));
+                toast.success("Logout successful");
                 router.push("/login")
             }
 

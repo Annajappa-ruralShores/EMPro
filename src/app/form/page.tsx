@@ -6,6 +6,7 @@ import { Upload, Calendar, Building2, MapPin, Globe, Phone, Mail, FileText, Chec
 import Modal from '@/components/Modal';
 import axios from 'axios';
 import { Country, State } from "country-state-city";
+import { toast } from 'react-toastify';
 
 export default function OrganizationForm() {
     const [isPreviewOpen, setIsPreviewOpen] = useState(false);
@@ -71,7 +72,7 @@ export default function OrganizationForm() {
             const response = await axios.post('/api/form', payload);
 
             if (response.status === 201) {
-                alert('Data saved successfully!');
+                toast.success("Data saved successfully!");
                 setIsPreviewOpen(false);
                 setFormData(initialFormData);
                 setFileName(null);

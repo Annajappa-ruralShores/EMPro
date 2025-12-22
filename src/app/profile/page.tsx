@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { User, Mail, Shield, Calendar, Edit2, LogOut } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { toast } from 'react-toastify';
 
 export default function ProfilePage() {
     const router = useRouter();
@@ -33,7 +34,10 @@ export default function ProfilePage() {
     const handleUpdateProfile = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
-            await axios.put('/api/users/me', { Fullname: editName });
+            let response = await axios.put('/api/users/me', { Fullname: editName });
+            if (response.status === 200) {
+                toast.success("Profile updated successfully");
+            }
             setUser({ ...user, Fullname: editName });
             setIsEditing(false);
             // Optional: Show success toast

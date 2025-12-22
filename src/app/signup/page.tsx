@@ -6,6 +6,7 @@ import { User, Mail, Lock, ArrowRight, Github } from 'lucide-react';
 import { useState } from 'react';
 import axios from "axios";
 import { useRouter } from 'next/navigation';
+import { toast } from 'react-toastify';
 
 export default function SignupPage() {
 
@@ -20,8 +21,12 @@ export default function SignupPage() {
         e.preventDefault();
         try {
             const response = await axios.post("/api/users/signup", usersignup)
-            console.log(response.data);
-            alert("User Registered Successfully");
+
+            if (response.status !== 201) {
+                toast.error("User not registered");
+                return;
+            }
+            toast.success("User registered successfully");
             setusersignup({
                 Fullname: "",
                 Email: "",
@@ -32,9 +37,9 @@ export default function SignupPage() {
         } catch (error: any) {
             console.log(error);
             if (error.response && error.response.data && error.response.data.message) {
-                alert(error.response.data.message);
+                toast.error(error.response.data.message);
             } else {
-                alert(error.message || "Signup failed");
+                toast.error(error.message || "Signup failed");
             }
         }
     }
