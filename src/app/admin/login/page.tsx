@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { ShieldCheck, Lock, Mail, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { toast } from 'react-toastify';
 
 export default function AdminLoginPage() {
     const [loginData, setLoginData] = useState({
@@ -32,18 +33,21 @@ export default function AdminLoginPage() {
             // Dispatch event to update Navbar immediately
             const result = response.data.isAdmin;
             if (result) {
+                toast.success("Admin Login successful");
+            }
+            if (result) {
                 window.dispatchEvent(new Event('auth-change'));
                 router.push("/admin");
             } else {
-                alert("You are not authorized to access this page");
+                toast.error("You are not authorized to access this page");
                 router.push("/");
             }
 
         } catch (error: any) {
             if (error.response && error.response.data && error.response.data.message) {
-                alert(error.response.data.message);
+                toast.error(error.response.data.message);
             } else {
-                alert(error.message || "Login failed");
+                toast.error(error.message || "Login failed");
             }
         }
     }

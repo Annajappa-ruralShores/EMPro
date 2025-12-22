@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { User, Mail, Shield, CheckCircle, XCircle, Edit2, Trash2 } from 'lucide-react';
+import { toast } from 'react-toastify';
 
 interface UserData {
     _id: string;
@@ -45,13 +46,16 @@ export default function AdminUsersPage() {
 
     // Delete User
     const handleDelete = async (userId: string) => {
-        if (confirm("Are you sure you want to delete this user? This action cannot be undone.")) {
+        if (confirm("Are you sure you want to delete this user?")) {
             try {
-                await axios.delete(`/api/users/${userId}`);
+                let response = await axios.delete(`/api/users/${userId}`);
+                if (response.status === 200) {
+                    toast.success("User deleted successfully");
+                }
                 setUsers(users.filter(u => u._id !== userId));
             } catch (error) {
                 console.error("Failed to delete user", error);
-                alert("Failed to delete user");
+                toast.error("Failed to delete user");
             }
         }
     };
@@ -72,10 +76,12 @@ export default function AdminUsersPage() {
             // Update local state
             setUsers(users.map(u => u._id === _id ? res.data.data : u));
             setIsEditModalOpen(false);
-            alert("User updated successfully");
+            if (res.status === 200) {
+                toast.success("User updated successfully");
+            }
         } catch (error) {
             console.error("Failed to update user", error);
-            alert("Failed to update user");
+            toast.error("Failed to update user");
         }
     };
 
